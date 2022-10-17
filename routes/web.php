@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/user', 'user', ['id' => 20]);
+
+Route::get('/product/{slug}/{id}', function ($slug, $id) {
+    return $id . '----' . $slug;
+});
+
+Route::get('/post/{id}', [PostController::class, 'detail']);
+Route::resource('user', UserController::class);
