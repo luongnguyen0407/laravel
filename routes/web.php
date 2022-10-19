@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +28,5 @@ Route::get('/product/{slug}/{id}', function ($slug, $id) {
 
 Route::get('/post/{id}', [PostController::class, 'detail']);
 Route::resource('user', UserController::class);
+
+Route::get('user/add', [UserController::class, 'create']);

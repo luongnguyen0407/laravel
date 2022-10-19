@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,18 +15,15 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = array(
-            1 => array(
-                'name' => 'Lee hong 1'
-            ),
-            2 => array(
-                'name' => 'Lee hong 2'
-            ),
-            3 => array(
-                'name' => 'Lee hong 3'
-            )
-        );
-        return view('user', compact('users'));
+        // $user = DB::table('users')->select(['email', 'username'])->get();
+        // $user = DB::table('users')->select(['email', 'username'])->where(['id' => 3, 'email' => 'test@gmail1.com'])->first();
+        // $user = DB::table('users')->select(['email', 'username'])->find(3);
+        // $user = DB::table('users')->count();
+        // $user = DB::table('users')->max('id');
+        // where('user_create', 'like', "%iphone%")
+        // $user = DB::table('comment')->join('users', 'users.id', '=', 'comment.user_create')->where('user_create', '=', 3)->get();
+        // dd($user);
+        // return view('user', compact('users'));
     }
 
     /**
@@ -37,7 +35,12 @@ class UserController extends Controller
     {
         //
         // return redirect('user') or;
-        return redirect()->route('user.index');
+        // return redirect()->route('user.index');
+        DB::table('users')->insert([
+            'email' => 'test@gmail1.com',
+            'username' => 'luong0407',
+            'password' => bcrypt('luong'),
+        ]);
     }
 
     /**
